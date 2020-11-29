@@ -1,0 +1,83 @@
+h1 {
+  text-align: center;
+  color: #1770c4;
+  font-size: 35px;
+  padding: 20px 140px 40px;
+}
+
+.container {
+  max-width: fit-content;
+  margin: 50px auto;
+  padding: 50px 50px;
+  background-color: #fbfbfc;
+  color: #45a5f2;
+}
+
+.header {
+  margin: -45px -40px;
+  font-size: 12px;
+  color: grey;
+}
+
+.weather-today {
+  display: block;
+  margin: 0 auto;
+}
+
+.temp-today {
+  text-align: center;
+}
+
+.desc-today {
+  text-align: left;
+}
+
+.fig-today {
+  text-align: right;
+}
+
+.forecast {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.current-location {
+  padding: 10px 20px;
+  margin: 0 auto;
+}
+
+.search-button {
+  margin-left: -28px;
+  background: white;
+  border-color: #cfd5db;
+}
+
+.current-button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  background: white;
+  color: #1770c4;
+  border-color: #cfd5db;
+}
+
+.search-button:hover,
+.current-button:hover {
+  background: white;
+  color: #1770c4;
+}
+
+.footer {
+  text-align: center;
+  color: grey;
+  font-size: 12px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#cels {
+  color: #45a5f2;
+}
+
+#fahr {
+  color: grey;
+}
