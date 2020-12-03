@@ -28,28 +28,36 @@ dateHeader.innerHTML = displayDate(todaysDate);
 //
 
 function convertToFahr() {
-  let fahr = document.querySelector("#fahr");
-  let cels = document.querySelector("#cels");
-  let tempValue = document.querySelector("#temp-val");
-  fahr.innerHTML = `<span style='color:#45a5f2'>°F</span>`;
-  cels.innerHTML = `<span style='color:grey'>C</span>`;
-  tempValue.innerHTML = `54`;
+  let tempValue = document.querySelector("#temp-val").innerHTML;
+  document.querySelector("#fahr").innerHTML = `<span style='color:#45a5f2'>°F</span>`;
+  document.querySelector("#cels").innerHTML = `<span style='color:grey'>C</span>`;
+  console.log(tempValue);
+  let conversion = Math.round(tempValue * 1.8 + 32);
+  console.log(conversion);
 }
 
 let changeFahr = document.querySelector("#fahr")
 changeFahr.addEventListener("click", convertToFahr);
 
-function convertToCels() {
-  let cels = document.querySelector("#cels");
-  let fahr = document.querySelector("#fahr");
-  let tempValue = document.querySelector("#temp-val");
-  cels.innerHTML = `<span style='color:#45a5f2'>°C</span>`;
-  fahr.innerHTML = `<span style='color:grey'>F</span>`;
-  tempValue.innerHTML = `12`;
-}
+//function convertToCels() {
+  //let cels = document.querySelector("#cels");
+  //let fahr = document.querySelector("#fahr");
+  //let tempValue = document.querySelector("#temp-val");
+  //cels.innerHTML = `<span style='color:#45a5f2'>°C</span>`;
+  //fahr.innerHTML = `<span style='color:grey'>F</span>`;
+  //tempValue.innerHTML = `12`;
+//}
 
-let changeCels = document.querySelector("#cels")
-changeCels.addEventListener("click", convertToCels);
+//let changeCels = document.querySelector("#cels")
+//changeCels.addEventListener("click", convertToCels);
+
+// dqs fahr
+// add event listener click convertToFahr
+// function convertFahr
+// ; dqs temp-val change to api url fahr or calc?
+// ; dqs cels grey fahr blue
+// dqs cels
+// as above but other way round
 
 //
 
@@ -90,3 +98,5 @@ function currentLocationWeather(event) {
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", currentLocationWeather);
+
+
