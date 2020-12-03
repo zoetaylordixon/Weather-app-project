@@ -58,10 +58,6 @@ function displayWeather(response) {
   document.querySelector("#current-city").innerHTML = response.data.name;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  //displayTemp.innerHTML = Math.round(response.data.main.temp);
-  //displayName.innerHTML = response.data.name;
-  //displayWind.innerHTML = `${Math.round(response.data.wind.speed)}mph`;
-  //displayHumidity.innerHTML = `${response.data.main.humidity}%`;
 }
 
 function searchCity(event) {
@@ -76,28 +72,6 @@ function searchCity(event) {
 
 let searchCityForm = document.querySelector("#search-city");
 searchCityForm.addEventListener("submit", searchCity);
-
-//function citySearch(event) {
- //event.preventDefault();
-  //let searchInput = document.querySelector("#city-input").value;
-  //let cityHeading = document.querySelector("#current-city");
-  //cityHeading.innerHTML = `${searchInput}`;
-  //searchCity(searchInput);
-//}
-
-//
-
-//function displayLocationTemp(response) {
- //let displayTemp = document.querySelector("#temp-val");
- //let displayName = document.querySelector("#current-city");
- //let displayWind = document.querySelector("#wind");
- //let displayHumidity = document.querySelector("#hum");
- //displayTemp.innerHTML = Math.round(response.data.main.temp);
- //displayName.innerHTML = response.data.name;
- //displayWind.innerHTML = Math.round(response.data.wind.speed);
- //displayHumidity.innerHTML = response.data.main.humidity;
- //console.log(response);
-//}
 
 function searchLocation(position) {
  let latitude = position.coords.latitude;
