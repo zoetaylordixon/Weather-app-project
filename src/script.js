@@ -13,13 +13,13 @@ let weekday = [
 ];
 
 let currentDay = weekday[date.getDay()];
-let currentDate = date.getDate();
+let currentDate = (`0${date.getDate()}`).slice(-2);
 let currentMonth = date.getMonth()+1;
 let currentYear = date.getFullYear();
 let currentHour = date.getHours();
 let currentMins = (`0${date.getMinutes()}`).slice(-2);
 
-return(`${currentDay} ${currentDate}/${currentMonth}/${currentYear} ${currentHour}:${currentMins}`);
+return(`Last updated ${currentDay} ${currentDate}/${currentMonth}/${currentYear} ${currentHour}:${currentMins}`);
 }
 
 let dateHeader = document.querySelector("#todays-date");
