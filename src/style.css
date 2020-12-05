@@ -75,6 +75,11 @@ h1 {
   font-family: "Courier New", Courier, monospace;
 }
 
+#condition {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
 #cels {
   color: #45a5f2;
 }

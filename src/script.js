@@ -58,7 +58,6 @@ changeFahr.addEventListener("click", convertToFahr);
 // ; dqs cels grey fahr blue
 // dqs cels
 // as above but other way round
-
 //
 
 function displayWeather(response) {
@@ -66,6 +65,7 @@ function displayWeather(response) {
   document.querySelector("#current-city").innerHTML = response.data.name;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#condition").innerHTML = response.data.weather[0].description;
 }
 
 function searchCity(event) {
