@@ -29,6 +29,24 @@ h1 {
   text-align: center;
 }
 
+.active {
+  color: #45a5f2;
+  cursor: default;
+}
+
+.active:hover {
+  text-decoration: none;
+  color: #45a5f2;
+}
+
+.inactive {
+  color: grey;
+}
+
+.inactive:hover {
+  color: grey;
+}
+
 .desc-today {
   text-align: left;
 }
@@ -80,10 +98,10 @@ h1 {
   text-transform: capitalize;
 }
 
-#cels {
+/*#cels {
   color: #45a5f2;
 }
 
 #fahr {
   color: grey;
-}
+}*/

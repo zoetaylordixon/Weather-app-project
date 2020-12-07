@@ -31,16 +31,31 @@ function convertToFahr(event) {
   event.preventDefault();
   let fahrTemperature = Math.round((celsiusTemperature * 9/5) + 32);
   document.querySelector("#temp-val").innerHTML = `${fahrTemperature}`;
-  document.querySelector("#fahr").innerHTML = `<span style='color:#45a5f2'> °F</span>`;
-  document.querySelector("#cels").innerHTML = `<span style='color:grey'> C</span>`;
+  document.querySelector("#fahr").innerHTML = ` °F`;
+  document.querySelector("#cels").innerHTML = ` C`;
+  changeFahr.classList.remove("inactive");
+  changeFahr.classList.add("active");
+  changeCels.classList.remove("active");
+  changeCels.classList.add("inactive");
+
+  //document.querySelector("#fahr").innerHTML = `<span style='color:#45a5f2'> °F</span>`;
+  //document.querySelector("#cels").innerHTML = `<span style='color:grey'> C</span>`;
 }
 
 
 function convertToCels(event) {
   event.preventDefault();
   document.querySelector("#temp-val").innerHTML = `${celsiusTemperature}`;
-  document.querySelector("#cels").innerHTML = `<span style='color:#45a5f2'> °C</span>`;
-  document.querySelector("#fahr").innerHTML = `<span style='color:grey'> F</span>`;
+  document.querySelector("#cels").innerHTML = ` °C`;
+  document.querySelector("#fahr").innerHTML = ` F`;
+  changeCels.classList.remove("inactive");
+  changeCels.classList.add("active");
+  changeFahr.classList.remove("active");
+  changeFahr.classList.add("inactive");
+ 
+
+  //document.querySelector("#cels").innerHTML = `<span style='color:#45a5f2'> °C</span>`;
+  //document.querySelector("#fahr").innerHTML = `<span style='color:grey'> F</span>`;
 }
 
 let changeFahr = document.querySelector("#fahr")
