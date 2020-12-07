@@ -61,11 +61,14 @@ changeFahr.addEventListener("click", convertToFahr);
 //
 
 function displayWeather(response) {
+  let currentIcon = document.querySelector(".current-weather-icon");
   document.querySelector("#temp-val").innerHTML = Math.round(response.data.main.temp);
   document.querySelector("#current-city").innerHTML = response.data.name;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#condition").innerHTML = response.data.weather[0].description;
+  currentIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  currentIcon.setAttribute("alt", `${response.data.weather[0].description}`)
 }
 
 function searchCity(event) {
@@ -98,5 +101,3 @@ function currentLocationWeather(event) {
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", currentLocationWeather);
-
-
