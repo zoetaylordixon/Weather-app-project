@@ -50,6 +50,7 @@ function convertToCels(event) {
   changeCels.classList.add("active");
   changeFahr.classList.remove("active");
   changeFahr.classList.add("inactive");
+}
 
 let changeFahr = document.querySelector("#fahr")
 changeFahr.addEventListener("click", convertToFahr);
