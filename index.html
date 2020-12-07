@@ -28,8 +28,8 @@
             <div class="col-6 temp-today">
                 <h2>
                     <span id="temp-val"></span>
-                    <span><a href=# id="cels">°C</a></span> 
-                    <span><a href=# id="fahr">F</a></span>
+                    <span><a href="#" id="cels">°C</a></span> 
+                    <span><a href="#" id="fahr">F</a></span>
                 </br>
                     <span id="condition"></span>
                 </h2>
@@ -87,22 +87,33 @@
     </div>
     
     <form id="search-city">
-    <div class="row search">
-        <div class="col-10">
-            
-                <input type="text" placeholder="Enter your location" id="city-input" class="form-control"/>
-        </div>
-            <div class="col-2">
-                <input type="submit" value="Search" class="btn btn-outline-secondary search-button">
+        <div class="row search">
+            <div class="col-10">
+                <input 
+                type="search" 
+                placeholder="Enter your location" 
+                id="city-input" 
+                class="form-control"
+                autocomplete="off"
+                />
             </div>
-                <!--<div class="col-2">
-                    <input type="submit" value="Current" class="btn btn-outline-secondary current-button">
-                </div>-->
+            <div class="col-2">
+                <input
+                type="submit"
+                value="Search"
+                class="btn btn-outline-secondary search-button"
+                />
+            </div>
             </div>
             </form>
             
                 <div>
-                    <button class="btn btn-outline-secondary current-button" id="current-location-button">Current location </button> 
+                    <button 
+                    class="btn btn-outline-secondary current-button"
+                    id="current-location-button"
+                    >
+                    Current location
+                    </button> 
                 </div>
                 
             

@@ -27,37 +27,30 @@ dateHeader.innerHTML = displayDate(todaysDate);
 
 //
 
-function convertToFahr() {
-  let tempValue = document.querySelector("#temp-val").innerHTML;
-  document.querySelector("#fahr").innerHTML = `<span style='color:#45a5f2'>°F</span>`;
-  document.querySelector("#cels").innerHTML = `<span style='color:grey'>C</span>`;
-  console.log(tempValue);
-  let conversion = Math.round(tempValue * 1.8 + 32);
-  console.log(conversion);
+function convertToFahr(event) {
+  event.preventDefault();
+  let fahrTemperature = Math.round((celsiusTemperature * 9/5) + 32);
+  document.querySelector("#temp-val").innerHTML = `${fahrTemperature}`;
+  document.querySelector("#fahr").innerHTML = `<span style='color:#45a5f2'> °F</span>`;
+  document.querySelector("#cels").innerHTML = `<span style='color:grey'> C</span>`;
+}
+
+
+function convertToCels(event) {
+  event.preventDefault();
+  document.querySelector("#temp-val").innerHTML = `${celsiusTemperature}`;
+  document.querySelector("#cels").innerHTML = `<span style='color:#45a5f2'> °C</span>`;
+  document.querySelector("#fahr").innerHTML = `<span style='color:grey'> F</span>`;
 }
 
 let changeFahr = document.querySelector("#fahr")
 changeFahr.addEventListener("click", convertToFahr);
 
-//function convertToCels() {
-  //let cels = document.querySelector("#cels");
-  //let fahr = document.querySelector("#fahr");
-  //let tempValue = document.querySelector("#temp-val");
-  //cels.innerHTML = `<span style='color:#45a5f2'>°C</span>`;
-  //fahr.innerHTML = `<span style='color:grey'>F</span>`;
-  //tempValue.innerHTML = `12`;
-//}
+let changeCels = document.querySelector("#cels")
+changeCels.addEventListener("click", convertToCels);
 
-//let changeCels = document.querySelector("#cels")
-//changeCels.addEventListener("click", convertToCels);
+let celsiusTemperature = null;
 
-// dqs fahr
-// add event listener click convertToFahr
-// function convertFahr
-// ; dqs temp-val change to api url fahr or calc?
-// ; dqs cels grey fahr blue
-// dqs cels
-// as above but other way round
 //
 
 function displayWeather(response) {
@@ -68,7 +61,12 @@ function displayWeather(response) {
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#condition").innerHTML = response.data.weather[0].description;
   currentIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+
+  // currentIcon.setAttribute("src", `media/${response.data.weather[0].icon}.png`);
+
   currentIcon.setAttribute("alt", `${response.data.weather[0].description}`)
+  celsiusTemperature = Math.round(response.data.main.temp);
+  console.log(celsiusTemperature);
 }
 
 function searchCity(event) {
