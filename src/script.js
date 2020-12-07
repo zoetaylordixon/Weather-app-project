@@ -38,8 +38,6 @@ function convertToFahr(event) {
   changeCels.classList.remove("active");
   changeCels.classList.add("inactive");
 
-  //document.querySelector("#fahr").innerHTML = `<span style='color:#45a5f2'> °F</span>`;
-  //document.querySelector("#cels").innerHTML = `<span style='color:grey'> C</span>`;
 }
 
 
@@ -52,11 +50,6 @@ function convertToCels(event) {
   changeCels.classList.add("active");
   changeFahr.classList.remove("active");
   changeFahr.classList.add("inactive");
- 
-
-  //document.querySelector("#cels").innerHTML = `<span style='color:#45a5f2'> °C</span>`;
-  //document.querySelector("#fahr").innerHTML = `<span style='color:grey'> F</span>`;
-}
 
 let changeFahr = document.querySelector("#fahr")
 changeFahr.addEventListener("click", convertToFahr);
