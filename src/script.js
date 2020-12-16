@@ -1,3 +1,5 @@
+// current date
+
 let todaysDate = new Date();
 
 function displayDate(date) {
@@ -25,7 +27,7 @@ return(`Last updated ${currentDay} ${currentDate}/${currentMonth}/${currentYear}
 let dateHeader = document.querySelector("#todays-date");
 dateHeader.innerHTML = displayDate(todaysDate);
 
-//
+// conversion
 
 function convertToFahr(event) {
   event.preventDefault();
@@ -39,7 +41,6 @@ function convertToFahr(event) {
   changeCels.classList.add("inactive");
 
 }
-
 
 function convertToCels(event) {
   event.preventDefault();
@@ -60,7 +61,7 @@ changeCels.addEventListener("click", convertToCels);
 
 let celsiusTemperature = null;
 
-//
+// search engine
 
 function displayWeather(response) {
   let currentIcon = document.querySelector(".current-weather-icon");
@@ -69,27 +70,43 @@ function displayWeather(response) {
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#condition").innerHTML = response.data.weather[0].description;
-  currentIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-
-  // currentIcon.setAttribute("src", `media/${response.data.weather[0].icon}.png`);
-
+  currentIcon.setAttribute("src", `media/${response.data.weather[0].icon}.png`);
   currentIcon.setAttribute("alt", `${response.data.weather[0].description}`)
   celsiusTemperature = Math.round(response.data.main.temp);
+  console.log(response);
   console.log(celsiusTemperature);
 }
 
+function displayForecast(response) {
+
+
+console.log(response);
+  // add ids to img temp time
+  // docquesel each image temp time on html
+  // img: replace src attribute w local img link to response.data.list[0].weather[0].icon png
+  // img: replace alt attribute w response.data.list[0].weather[0].description
+  // temp: replace innerhtml w response.data.list[0].main.temp rounded
+} // time: replace innerhtml w response.data.list[0].dt converted to real time or dt_txt
+
 function searchCity(event) {
   event.preventDefault();
-  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather?";
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/";
+  let currentWeather = "weather";
+  let forecastWeather = "forecast";
   let city = document.querySelector("#city-input").value;
   let units = "metric";
   let apiKey = "69c91905cd6e11cf61e752d7ac98b13d";
-  let apiUrl = `${apiEndpoint}q=${city}&units=${units}&appid=${apiKey}`;
+  let apiUrl = `${apiEndpoint}${currentWeather}?q=${city}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayWeather);
+  //forecast
+  apiUrl = `${apiEndpoint}${forecastWeather}?q=${city}&units=${units}&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 let searchCityForm = document.querySelector("#search-city");
 searchCityForm.addEventListener("submit", searchCity);
+
+// current location
 
 function searchLocation(position) {
  let latitude = position.coords.latitude;
