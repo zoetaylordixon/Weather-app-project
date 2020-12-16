@@ -33,6 +33,11 @@ function convertToFahr(event) {
   event.preventDefault();
   let fahrTemperature = Math.round((celsiusTemperature * 9/5) + 32);
   document.querySelector("#temp-val").innerHTML = `${fahrTemperature}`;
+  //document.querySelector("#temp-first").innerHTML = `${fahrTemperature}`;
+  //document.querySelector("#temp-second").innerHTML = `${fahrTemperature}`;
+  //document.querySelector("#temp-third").innerHTML = `${fahrTemperature}`;
+  //document.querySelector("#temp-fourth").innerHTML = `${fahrTemperature}`;
+  //document.querySelector("#temp-fifth").innerHTML = `${fahrTemperature}`;
   document.querySelector("#fahr").innerHTML = ` °F`;
   document.querySelector("#cels").innerHTML = ` C`;
   changeFahr.classList.remove("inactive");
@@ -64,7 +69,7 @@ let celsiusTemperature = null;
 // search engine
 
 function displayWeather(response) {
-  let currentIcon = document.querySelector(".current-weather-icon");
+  let currentIcon = document.querySelector("#current-weather-icon");
   document.querySelector("#temp-val").innerHTML = Math.round(response.data.main.temp);
   document.querySelector("#current-city").innerHTML = response.data.name;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
@@ -134,8 +139,9 @@ document.querySelector("#time-fifth").innerHTML = `${fifthHour}:${fifthMinutes}`
   // ☑️ img: replace alt attribute w response.data.list[0].weather[0].description
   // ☑️ temp: replace innerhtml w response.data.list[0].main.temp rounded
   // ☑️ time: replace innerhtml w response.data.list[0].dt converted to real time or dt_txt
-  // add to conversion functions 
+  // add to conversion functions?
   // incorporate long lat url?
+  // timezones?
 
 function searchCity(event) {
   event.preventDefault();
@@ -160,11 +166,16 @@ searchCityForm.addEventListener("submit", searchCity);
 function searchLocation(position) {
  let latitude = position.coords.latitude;
  let longitude = position.coords.longitude;
- let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather?";
+ let apiEndpoint = "https://api.openweathermap.org/data/2.5/";
+ let currentWeather = "weather";
+ let forecastWeather = "forecast";
  let units = "metric";
  let apiKey = "69c91905cd6e11cf61e752d7ac98b13d";
- let apiUrl = `${apiEndpoint}lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
+ let apiUrl = `${apiEndpoint}${currentWeather}?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
  axios.get(apiUrl).then(displayWeather);
+ //forecast
+ apiUrl = `${apiEndpoint}${forecastWeather}?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
+ axios.get(apiUrl).then(displayForecast);
 }
 
 function currentLocationWeather(event) {
