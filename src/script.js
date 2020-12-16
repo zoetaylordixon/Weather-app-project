@@ -78,15 +78,38 @@ function displayWeather(response) {
 }
 
 function displayForecast(response) {
+let firstIcon = document.querySelector("#img-first");
+let secondIcon = document.querySelector("#img-second");
+let thirdIcon = document.querySelector("#img-third");
+let fourthIcon = document.querySelector("#img-fourth");
+let fifthIcon = document.querySelector("#img-fifth");
+firstIcon.setAttribute("src", `media/${response.data.list[0].weather[0].icon}.png`);
+firstIcon.setAttribute("alt", `${response.data.list[0].weather[0].description}`);
+secondIcon.setAttribute("src", `media/${response.data.list[1].weather[0].icon}.png`);
+secondIcon.setAttribute("alt", `${response.data.list[1].weather[0].description}`);
+thirdIcon.setAttribute("src", `media/${response.data.list[2].weather[0].icon}.png`);
+thirdIcon.setAttribute("alt", `${response.data.list[2].weather[0].description}`);
+fourthIcon.setAttribute("src", `media/${response.data.list[3].weather[0].icon}.png`);
+fourthIcon.setAttribute("alt", `${response.data.list[3].weather[0].description}`);
+fifthIcon.setAttribute("src", `media/${response.data.list[4].weather[0].icon}.png`);
+fifthIcon.setAttribute("alt", `${response.data.list[4].weather[0].description}`);
+document.querySelector("#temp-first").innerHTML = `${Math.round(response.data.list[0].main.temp)}°`;
+document.querySelector("#temp-second").innerHTML = `${Math.round(response.data.list[1].main.temp)}°`;
+document.querySelector("#temp-third").innerHTML = `${Math.round(response.data.list[2].main.temp)}°`;
+document.querySelector("#temp-fourth").innerHTML = `${Math.round(response.data.list[3].main.temp)}°`;
+document.querySelector("#temp-fifth").innerHTML = `${Math.round(response.data.list[4].main.temp)}°`;
 
-
+document.querySelector("#time-first").innerHTML = response.data.list[0].dt;
 console.log(response);
-  // add ids to img temp time
-  // docquesel each image temp time on html
-  // img: replace src attribute w local img link to response.data.list[0].weather[0].icon png
-  // img: replace alt attribute w response.data.list[0].weather[0].description
-  // temp: replace innerhtml w response.data.list[0].main.temp rounded
-} // time: replace innerhtml w response.data.list[0].dt converted to real time or dt_txt
+
+}
+  // ☑️ add ids to img temp time
+  // ☑️ docquesel each image temp time on html
+  // ☑️ img: replace src attribute w local img link to response.data.list[0].weather[0].icon png
+  // ☑️ img: replace alt attribute w response.data.list[0].weather[0].description
+  // ☑️ temp: replace innerhtml w response.data.list[0].main.temp rounded
+  // time: replace innerhtml w response.data.list[0].dt converted to real time or dt_txt
+  // add to conversion functions 
 
 function searchCity(event) {
   event.preventDefault();
