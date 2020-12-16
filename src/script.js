@@ -73,8 +73,6 @@ function displayWeather(response) {
   currentIcon.setAttribute("src", `media/${response.data.weather[0].icon}.png`);
   currentIcon.setAttribute("alt", `${response.data.weather[0].description}`)
   celsiusTemperature = Math.round(response.data.main.temp);
-  console.log(response);
-  console.log(celsiusTemperature);
 }
 
 function displayForecast(response) {
@@ -99,8 +97,35 @@ document.querySelector("#temp-third").innerHTML = `${Math.round(response.data.li
 document.querySelector("#temp-fourth").innerHTML = `${Math.round(response.data.list[3].main.temp)}°`;
 document.querySelector("#temp-fifth").innerHTML = `${Math.round(response.data.list[4].main.temp)}°`;
 
-document.querySelector("#time-first").innerHTML = response.data.list[0].dt;
-console.log(response);
+let firstTime = (response.data.list[0].dt);
+let firstDate = new Date(firstTime * 1000);
+let firstHour = firstDate.getHours();
+let firstMinutes = (`0${firstDate.getMinutes()}`).slice(-2);
+document.querySelector("#time-first").innerHTML = `${firstHour}:${firstMinutes}`;
+
+let secondTime = (response.data.list[1].dt);
+let secondDate = new Date(secondTime * 1000);
+let secondHour = (`0${secondDate.getHours()}`).slice(-2);
+let secondMinutes = (`0${secondDate.getMinutes()}`).slice(-2);
+document.querySelector("#time-second").innerHTML = `${secondHour}:${secondMinutes}`;
+
+let thirdTime = (response.data.list[2].dt);
+let thirdDate = new Date(thirdTime * 1000);
+let thirdHour = (`0${thirdDate.getHours()}`).slice(-2);
+let thirdMinutes = (`0${thirdDate.getMinutes()}`).slice(-2);
+document.querySelector("#time-third").innerHTML = `${thirdHour}:${thirdMinutes}`;
+
+let fourthTime = (response.data.list[3].dt);
+let fourthDate = new Date(fourthTime * 1000);
+let fourthHour = (`0${fourthDate.getHours()}`).slice(-2);
+let fourthMinutes = (`0${fourthDate.getMinutes()}`).slice(-2);
+document.querySelector("#time-fourth").innerHTML = `${fourthHour}:${fourthMinutes}`;
+
+let fifthTime = (response.data.list[4].dt);
+let fifthDate = new Date(fifthTime * 1000);
+let fifthHour = (`0${fifthDate.getHours()}`).slice(-2);
+let fifthMinutes = (`0${fifthDate.getMinutes()}`).slice(-2);
+document.querySelector("#time-fifth").innerHTML = `${fifthHour}:${fifthMinutes}`;
 
 }
   // ☑️ add ids to img temp time
@@ -108,8 +133,9 @@ console.log(response);
   // ☑️ img: replace src attribute w local img link to response.data.list[0].weather[0].icon png
   // ☑️ img: replace alt attribute w response.data.list[0].weather[0].description
   // ☑️ temp: replace innerhtml w response.data.list[0].main.temp rounded
-  // time: replace innerhtml w response.data.list[0].dt converted to real time or dt_txt
+  // ☑️ time: replace innerhtml w response.data.list[0].dt converted to real time or dt_txt
   // add to conversion functions 
+  // incorporate long lat url?
 
 function searchCity(event) {
   event.preventDefault();
