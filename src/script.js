@@ -1,8 +1,7 @@
 // current date
+function displayDate(timestamp) {
 
-let todaysDate = new Date();
-
-function displayDate(date) {
+let date = new Date(timestamp);
 
 let weekday = [
   "Sunday",
@@ -23,9 +22,6 @@ let currentMins = (`0${date.getMinutes()}`).slice(-2);
 
 return(`Last updated ${currentDay} ${currentDate}/${currentMonth}/${currentYear} ${currentHour}:${currentMins}`);
 }
-
-let dateHeader = document.querySelector("#todays-date");
-dateHeader.innerHTML = displayDate(todaysDate);
 
 // conversion
 
@@ -78,6 +74,8 @@ function displayWeather(response) {
   currentIcon.setAttribute("src", `media/${response.data.weather[0].icon}.png`);
   currentIcon.setAttribute("alt", `${response.data.weather[0].description}`)
   celsiusTemperature = Math.round(response.data.main.temp);
+  let dateHeader = document.querySelector("#todays-date")
+  dateHeader.innerHTML = displayDate(response.data.dt * 1000);
 }
 
 function displayForecast(response) {
@@ -140,28 +138,35 @@ document.querySelector("#time-fifth").innerHTML = `${fifthHour}:${fifthMinutes}`
   // ☑️ temp: replace innerhtml w response.data.list[0].main.temp rounded
   // ☑️ time: replace innerhtml w response.data.list[0].dt converted to real time or dt_txt
   // add to conversion functions?
-  // incorporate long lat url?
+  // ☑️ incorporate long lat url
   // timezones?
 
-function searchCity(event) {
-  event.preventDefault();
+
+  // pull html into innerhtml js (select forecast row)
+  // create var for response, intrepolate temp details into html
+  // for loop: for(let index = 0; index < 5; index++) { }
+
+//<div class="col">
+            //<img src=" " width="50px" id="img-first"/>
+            //<br />
+            //<span id="temp-first"></span>
+            //<br />
+            //<span id="time-first"></span>
+        //</div>
+
+
+function searchCity(city) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/";
   let currentWeather = "weather";
   let forecastWeather = "forecast";
-  let city = document.querySelector("#city-input").value;
   let units = "metric";
   let apiKey = "69c91905cd6e11cf61e752d7ac98b13d";
   let apiUrl = `${apiEndpoint}${currentWeather}?q=${city}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayWeather);
-  //forecast
+  
   apiUrl = `${apiEndpoint}${forecastWeather}?q=${city}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayForecast);
 }
-
-let searchCityForm = document.querySelector("#search-city");
-searchCityForm.addEventListener("submit", searchCity);
-
-// current location
 
 function searchLocation(position) {
  let latitude = position.coords.latitude;
@@ -183,5 +188,16 @@ function currentLocationWeather(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
+function handleSubmit(event) {
+event.preventDefault();
+let currentCity = document.querySelector("#city-input").value;
+searchCity(currentCity);
+}
+
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", currentLocationWeather);
+
+let searchCityForm = document.querySelector("#search-city");
+searchCityForm.addEventListener("submit", handleSubmit);
+
+searchCity("Hitchin");
