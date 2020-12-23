@@ -1,4 +1,3 @@
-// current date
 function displayDate(timestamp) {
 
 let date = new Date(timestamp);
@@ -17,30 +16,29 @@ let currentDay = weekday[date.getDay()];
 let currentDate = (`0${date.getDate()}`).slice(-2);
 let currentMonth = date.getMonth()+1;
 let currentYear = date.getFullYear();
+
+return(`Last updated ${currentDay} ${currentDate}/${currentMonth}/${currentYear} ${displayTime(timestamp)}`);
+}
+
+function displayTime(timestamp) {
+
+let date = new Date(timestamp);
 let currentHour = date.getHours();
 let currentMins = (`0${date.getMinutes()}`).slice(-2);
 
-return(`Last updated ${currentDay} ${currentDate}/${currentMonth}/${currentYear} ${currentHour}:${currentMins}`);
+return(`${currentHour}:${currentMins}`);
 }
-
-// conversion
 
 function convertToFahr(event) {
   event.preventDefault();
   let fahrTemperature = Math.round((celsiusTemperature * 9/5) + 32);
   document.querySelector("#temp-val").innerHTML = `${fahrTemperature}`;
-  //document.querySelector("#temp-first").innerHTML = `${fahrTemperature}`;
-  //document.querySelector("#temp-second").innerHTML = `${fahrTemperature}`;
-  //document.querySelector("#temp-third").innerHTML = `${fahrTemperature}`;
-  //document.querySelector("#temp-fourth").innerHTML = `${fahrTemperature}`;
-  //document.querySelector("#temp-fifth").innerHTML = `${fahrTemperature}`;
   document.querySelector("#fahr").innerHTML = ` °F`;
   document.querySelector("#cels").innerHTML = ` C`;
   changeFahr.classList.remove("inactive");
   changeFahr.classList.add("active");
   changeCels.classList.remove("active");
   changeCels.classList.add("inactive");
-
 }
 
 function convertToCels(event) {
@@ -53,16 +51,6 @@ function convertToCels(event) {
   changeFahr.classList.remove("active");
   changeFahr.classList.add("inactive");
 }
-
-let changeFahr = document.querySelector("#fahr")
-changeFahr.addEventListener("click", convertToFahr);
-
-let changeCels = document.querySelector("#cels")
-changeCels.addEventListener("click", convertToCels);
-
-let celsiusTemperature = null;
-
-// search engine
 
 function displayWeather(response) {
   let currentIcon = document.querySelector("#current-weather-icon");
@@ -129,31 +117,7 @@ let fifthDate = new Date(fifthTime * 1000);
 let fifthHour = (`0${fifthDate.getHours()}`).slice(-2);
 let fifthMinutes = (`0${fifthDate.getMinutes()}`).slice(-2);
 document.querySelector("#time-fifth").innerHTML = `${fifthHour}:${fifthMinutes}`;
-
-}
-  // ☑️ add ids to img temp time
-  // ☑️ docquesel each image temp time on html
-  // ☑️ img: replace src attribute w local img link to response.data.list[0].weather[0].icon png
-  // ☑️ img: replace alt attribute w response.data.list[0].weather[0].description
-  // ☑️ temp: replace innerhtml w response.data.list[0].main.temp rounded
-  // ☑️ time: replace innerhtml w response.data.list[0].dt converted to real time or dt_txt
-  // add to conversion functions?
-  // ☑️ incorporate long lat url
-  // timezones?
-
-
-  // pull html into innerhtml js (select forecast row)
-  // create var for response, intrepolate temp details into html
-  // for loop: for(let index = 0; index < 5; index++) { }
-
-//<div class="col">
-            //<img src=" " width="50px" id="img-first"/>
-            //<br />
-            //<span id="temp-first"></span>
-            //<br />
-            //<span id="time-first"></span>
-        //</div>
-
+} 
 
 function searchCity(city) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/";
@@ -178,7 +142,7 @@ function searchLocation(position) {
  let apiKey = "69c91905cd6e11cf61e752d7ac98b13d";
  let apiUrl = `${apiEndpoint}${currentWeather}?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
  axios.get(apiUrl).then(displayWeather);
- //forecast
+ 
  apiUrl = `${apiEndpoint}${forecastWeather}?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
  axios.get(apiUrl).then(displayForecast);
 }
@@ -199,5 +163,13 @@ currentLocationButton.addEventListener("click", currentLocationWeather);
 
 let searchCityForm = document.querySelector("#search-city");
 searchCityForm.addEventListener("submit", handleSubmit);
+
+let changeFahr = document.querySelector("#fahr")
+changeFahr.addEventListener("click", convertToFahr);
+
+let changeCels = document.querySelector("#cels")
+changeCels.addEventListener("click", convertToCels);
+
+let celsiusTemperature = null;
 
 searchCity("Hitchin");
