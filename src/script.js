@@ -12,12 +12,27 @@ let weekday = [
   "Saturday"
 ];
 
+let month = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
 let currentDay = weekday[date.getDay()];
 let currentDate = (`0${date.getDate()}`).slice(-2);
-let currentMonth = (`0${date.getMonth()}`).slice(-2);)
+let currentMonth = month[date.getMonth()+1];
 let currentYear = date.getFullYear();
 
-return(`Last updated ${currentDay} ${currentDate}/${currentMonth}/${currentYear} ${displayTime(timestamp)}`);
+return(`Last updated ${displayTime(timestamp)} ${currentDay} ${currentDate} ${currentMonth} ${currentYear}`);
 }
 
 function displayTime(timestamp) {
