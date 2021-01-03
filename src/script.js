@@ -14,7 +14,7 @@ let weekday = [
 
 let currentDay = weekday[date.getDay()];
 let currentDate = (`0${date.getDate()}`).slice(-2);
-let currentMonth = date.getMonth()+1;
+let currentMonth = (`0${date.getMonth()}`).slice(-2);)
 let currentYear = date.getFullYear();
 
 return(`Last updated ${currentDay} ${currentDate}/${currentMonth}/${currentYear} ${displayTime(timestamp)}`);
@@ -23,7 +23,7 @@ return(`Last updated ${currentDay} ${currentDate}/${currentMonth}/${currentYear}
 function displayTime(timestamp) {
 
 let date = new Date(timestamp);
-let currentHour = date.getHours();
+let currentHour = (`0${date.getHours()}`).slice(-2);
 let currentMins = (`0${date.getMinutes()}`).slice(-2);
 
 return(`${currentHour}:${currentMins}`);
